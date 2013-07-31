@@ -5,6 +5,7 @@ module Instructions
     before(:each) do
       @environment = double("environment")
       @stack = double("stack")
+      @memory = double("stack")
       @cell = double("cell")
       @cell.stub(:position) { :CELL_POS }
     end
@@ -30,6 +31,15 @@ module Instructions
         @memory.should_receive(:storeValueAt).with(:VALUE, :ADDR)
         store = Store.new(@stack, @memory)
         store.run
+      end
+    end
+    context :Load do
+      it "should push a value from memory" do
+        load = Load.new(@stack, @memory)
+        @stack.should_receive(:pop).and_return(:ADDR)
+        @memory.should_receive(:loadFrom).with(:ADDR) { :VALUE }
+        @stack.should_receive(:push).and_return(:VALUE)
+        load.run
       end
     end
   end

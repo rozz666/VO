@@ -23,4 +23,14 @@ module Instructions
       @memory.storeValueAt(@stack.pop, addr)
     end
   end
+
+  class Load
+    def initialize stack, memory
+      @stack, @memory = stack, memory
+    end
+    def run
+      addr = @stack.pop
+      @stack.push @memory.loadFrom(addr)
+    end
+  end
 end
