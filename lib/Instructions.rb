@@ -4,7 +4,12 @@ module Instructions
       @environment, @stack, @cell = environment, stack, cell 
     end
     def run
-      @cell.addEnergy @environment.getFoodFrom(@cell.position)
+      food = @environment.getFoodFrom(@cell.position)
+      if food.nil? then
+        @stack.push 0
+        return
+      end
+      @cell.addEnergy food
       @stack.push 1
     end
   end

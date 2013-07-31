@@ -9,12 +9,19 @@ module Instructions
       @cell.stub(:position) { :CELL_POS }
     end
     context :Eat do
+      before(:each) do
+        @eat = Eat.new(@environment, @stack, @cell) 
+      end
       it "should add energy from food and push 1" do
-        eat = Eat.new(@environment, @stack, @cell) 
         @environment.should_receive(:getFoodFrom).with(:CELL_POS) { 10 }
         @stack.should_receive(:push).with(1)
         @cell.should_receive(:addEnergy).with(10)
-        eat.run
+        @eat.run
+      end
+      it "should push 0 if food is not available" do
+        @environment.should_receive(:getFoodFrom).with(:CELL_POS) { nil }
+        @stack.should_receive(:push).with(0)
+        @eat.run
       end
     end
   end
