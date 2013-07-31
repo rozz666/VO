@@ -7,10 +7,11 @@ module Instructions
       food = @environment.getFoodFrom(@cell.position)
       if food.nil? then
         @stack.push 0
-        return
+        return 0
       end
       @cell.addEnergy food
       @stack.push 1
+      0
     end
   end
   
@@ -21,6 +22,7 @@ module Instructions
     def run
       addr = @stack.pop
       @memory.storeValueAt(@stack.pop, addr)
+      0
     end
   end
 
@@ -31,6 +33,7 @@ module Instructions
     def run
       addr = @stack.pop
       @stack.push @memory.loadFrom(addr)
+      0
     end
   end
   
@@ -39,7 +42,17 @@ module Instructions
       @cell, @environment = cell, environment
     end
     def run
-      @environment.addCellNear @cell.createCopy, @cell.position 
+      @environment.addCellNear @cell.createCopy, @cell.position
+      0 
+    end
+  end
+  
+  class Skip
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      @stack.pop
     end
   end
 end

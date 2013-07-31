@@ -17,12 +17,12 @@ module Instructions
         @environment.should_receive(:getFoodFrom).with(:CELL_POS) { 10 }
         @stack.should_receive(:push).with(1)
         @cell.should_receive(:addEnergy).with(10)
-        @eat.run
+        @eat.run.should eq(0)
       end
       it "should push 0 if food is not available" do
         @environment.should_receive(:getFoodFrom).with(:CELL_POS) { nil }
         @stack.should_receive(:push).with(0)
-        @eat.run
+        @eat.run.should eq(0)
       end
     end
     context :Store do
@@ -30,7 +30,7 @@ module Instructions
         store = Store.new(@stack, @memory)
         @stack.should_receive(:pop).and_return(:ADDR, :VALUE)
         @memory.should_receive(:storeValueAt).with(:VALUE, :ADDR)
-        store.run
+        store.run.should eq(0)
       end
     end
     context :Load do
@@ -39,7 +39,7 @@ module Instructions
         @stack.should_receive(:pop).and_return(:ADDR)
         @memory.should_receive(:loadFrom).with(:ADDR) { :VALUE }
         @stack.should_receive(:push).and_return(:VALUE)
-        load.run
+        load.run.should eq(0)
       end
     end
     context :Copy do
@@ -47,7 +47,14 @@ module Instructions
         copy = Copy.new @cell, @environment
         @cell.should_receive(:createCopy) { :COPIED }
         @environment.should_receive(:addCellNear).with(:COPIED, :CELL_POS)
-        copy.run
+        copy.run.should eq(0)
+      end
+    end
+    context :Skip do
+      it "should skip given number of instructions" do
+        skip = Skip.new @stack
+        @stack.should_receive(:pop) { :N }
+        skip.run.should eq(:N)
       end
     end
   end
