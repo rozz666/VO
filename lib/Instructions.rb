@@ -33,4 +33,13 @@ module Instructions
       @stack.push @memory.loadFrom(addr)
     end
   end
+  
+  class Copy
+    def initialize cell, environment
+      @cell, @environment = cell, environment
+    end
+    def run
+      @environment.addCellNear @cell.createCopy, @cell.position 
+    end
+  end
 end

@@ -42,5 +42,13 @@ module Instructions
         load.run
       end
     end
+    context :Copy do
+      it "should copy the cell and put the copy near itself" do
+        copy = Copy.new @cell, @environment
+        @cell.should_receive(:createCopy) { :COPIED }
+        @environment.should_receive(:addCellNear).with(:COPIED, :CELL_POS)
+        copy.run
+      end
+    end
   end
 end
