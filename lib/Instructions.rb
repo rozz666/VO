@@ -13,4 +13,14 @@ module Instructions
       @stack.push 1
     end
   end
+  
+  class Store
+    def initialize stack, memory
+      @stack, @memory = stack, memory
+    end
+    def run
+      addr = @stack.pop
+      @memory.storeValueAt(@stack.pop, addr)
+    end
+  end
 end

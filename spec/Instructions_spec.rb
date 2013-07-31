@@ -24,5 +24,13 @@ module Instructions
         @eat.run
       end
     end
+    context :Store do
+      it "should store a value from stack in memory" do
+        @stack.should_receive(:pop).and_return(:ADDR, :VALUE)
+        @memory.should_receive(:storeValueAt).with(:VALUE, :ADDR)
+        store = Store.new(@stack, @memory)
+        store.run
+      end
+    end
   end
 end
