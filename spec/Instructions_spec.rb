@@ -57,5 +57,12 @@ module Instructions
         skip.run.should eq(:N)
       end
     end
+    context :SkipIf do
+      it "should skip given number of instructions if a condition is satisfied" do
+        skip = SkipIf.new @stack
+        @stack.should_receive(:pop).and_return(1, :N)
+        skip.run.should eq(:N)
+      end
+    end
   end
 end

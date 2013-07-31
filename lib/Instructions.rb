@@ -55,4 +55,14 @@ module Instructions
       @stack.pop
     end
   end
+
+  class SkipIf
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      @stack.pop
+      @stack.pop
+    end
+  end
 end
