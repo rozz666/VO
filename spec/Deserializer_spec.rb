@@ -8,17 +8,27 @@ describe :Deserializer do
   end
   
   it "should deserialize a sequence into a single instruction" do
-    @des.deserialize([ 0 ]).should eq([ :i0 ])
-    @des.deserialize([ 3 ]).should eq([ :i9 ])
-    @des.deserialize([ 1, 2, 1 ]).should eq([ :i4 ])
+    @des.getStream([ 0 ]).getSymbol.should eq(:i0)
+    @des.getStream([ 3 ]).getSymbol.should eq(:i9)
+    @des.getStream([ 1, 2, 1 ]).getSymbol.should eq(:i4)
   end
 
   it "should deserialize a sequence of instructions" do
-    @des.deserialize([ 1, 0,  0,  1, 2, 3,  3 ]).should eq([ :i1, :i0, :i6, :i9 ])
+    stream = @des.getStream([ 1, 0,  0,  1, 2, 3,  3 ])
+    stream.getSymbol.should eq(:i1)
+    stream.getSymbol.should eq(:i0)
+    stream.getSymbol.should eq(:i6)
+    stream.getSymbol.should eq(:i9)
   end
   
   it "should ignore unfinished sequences" do
-    @des.deserialize([ 0, 1, 2 ]).should eq([ :i0 ])
+    stream = @des.getStream([ 0, 1, 2 ])
+    stream.getSymbol.should eq(:i0)
+    stream.getSymbol.should be_nil
+  end
+  
+  it "should return nil for an empty sequence" do
+    stream = @des.getStream([]).getSymbol.should be_nil
   end
   
 end
