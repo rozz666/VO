@@ -61,8 +61,9 @@ module Instructions
       @stack = stack
     end
     def run
-      @stack.pop
-      @stack.pop
+      cond = @stack.pop
+      n = @stack.pop
+      cond != 0 ? n : 0
     end
   end
 end
