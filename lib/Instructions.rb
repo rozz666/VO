@@ -66,4 +66,17 @@ module Instructions
       cond != 0 ? n : 0
     end
   end
+  
+  class Swap
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      val1 = @stack.pop
+      val2 = @stack.pop
+      @stack.push val1
+      @stack.push val2
+      0
+    end
+  end
 end

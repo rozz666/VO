@@ -70,5 +70,15 @@ module Instructions
         @skip.run.should eq(0)
       end
     end
+    context :Swap do
+      it "should swap two values from the stack" do
+        swap = Swap.new @stack
+        @stack.should_receive(:pop).ordered  { :A }
+        @stack.should_receive(:pop).ordered  { :B }
+        @stack.should_receive(:push).with(:A).ordered
+        @stack.should_receive(:push).with(:B).ordered
+        swap.run.should eq(0)
+      end
+    end
   end
 end
