@@ -27,9 +27,9 @@ module Instructions
     end
     context :Store do
       it "should store a value from stack in memory" do
+        store = Store.new(@stack, @memory)
         @stack.should_receive(:pop).and_return(:ADDR, :VALUE)
         @memory.should_receive(:storeValueAt).with(:VALUE, :ADDR)
-        store = Store.new(@stack, @memory)
         store.run
       end
     end
