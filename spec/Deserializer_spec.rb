@@ -14,7 +14,7 @@ describe :Deserializer do
   end
 
   it "should deserialize a sequence of instructions" do
-    stream = @des.getStream([ 1, 0,  0,  1, 2, 3,  3 ])
+    stream = @des.getStream([ 1, 0,  0,  1, 2, 3,  3 ].freeze)
     stream.getSymbol.should eq(:i1)
     stream.getSymbol.should eq(:i0)
     stream.getSymbol.should eq(:i6)

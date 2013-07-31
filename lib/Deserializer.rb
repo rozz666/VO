@@ -2,15 +2,13 @@ class Deserializer
   class StreamReader
     def initialize instructions, seq
       @instructions = instructions
-      @seq = seq
+      @seq = seq.each
     end
     def getSymbol
       node = @instructions
-      while not @seq.empty?
-        node = node[@seq.delete_at(0)]
-        unless node.kind_of?(Array) then
-          return node
-        end
+      loop do
+        node = node[@seq.next]
+        return node unless node.kind_of?(Array)
       end
     end
   end
