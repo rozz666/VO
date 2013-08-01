@@ -179,4 +179,15 @@ module Instructions
       0
     end
   end
+  
+  class Eq
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      2.times { @stack.pop }
+      @stack.push 1
+      0
+    end
+  end
 end

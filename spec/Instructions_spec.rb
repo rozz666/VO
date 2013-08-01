@@ -159,5 +159,15 @@ module Instructions
         rotr.run.should eq(0)
       end
     end
+    context :Eq do
+      it "should push if two values are equal" do
+        eq = Eq.new @stack
+        left  = double("left")
+        @stack.should_receive(:pop) { 7 }
+        @stack.should_receive(:pop) { 7 }
+        @stack.should_receive(:push).with(1)
+        eq.run.should eq(0)
+      end
+    end
   end
 end
