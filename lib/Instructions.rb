@@ -139,4 +139,14 @@ module Instructions
       0
     end
   end
+  
+  class Movf
+    def initialize cell
+      @cell = cell
+    end
+    def run
+      @cell.moveForward
+      0
+    end
+  end
 end

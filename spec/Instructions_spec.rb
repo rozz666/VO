@@ -130,5 +130,12 @@ module Instructions
         add.run.should eq(0)
       end
     end
+    context :Movf do
+      it "should move the cell forward" do
+        add = Movf.new @cell
+        @cell.should_receive(:moveForward)
+        add.run.should eq(0)
+      end
+    end
   end
 end
