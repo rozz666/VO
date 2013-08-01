@@ -199,5 +199,14 @@ module Instructions
         @lt.run.should eq(0)
       end
     end
+    context :Sense do
+      it "should detect obstacles and push the obstacle ratio" do
+        sense = Sense.new @environment, @stack
+        @stack.should_receive(:pop) { :DIRECTION }
+        @environment.should_receive(:detectObstacles).with(:DIRECTION) { :RATIO }
+        @stack.should_receive(:push) { :RATIO }
+        sense.run.should eq(0)
+      end
+    end
   end
 end

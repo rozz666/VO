@@ -200,4 +200,15 @@ module Instructions
       0
     end
   end
+  
+  class Sense
+    def initialize environment, stack
+      @environment, @stack = environment, stack 
+    end
+    def run
+      ratio = @environment.detectObstacles(@stack.pop)
+      @stack.push ratio
+      0
+    end
+  end
 end
