@@ -185,8 +185,7 @@ module Instructions
       @stack = stack
     end
     def run
-      2.times { @stack.pop }
-      @stack.push 1
+      @stack.push(@stack.pop == @stack.pop ? 1 : 0)
       0
     end
   end
