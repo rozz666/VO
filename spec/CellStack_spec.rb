@@ -6,4 +6,11 @@ describe :CellStack do
       stack = CellStack.new.pop
     end
   end
+  it "should pop pushed values in reverse order" do
+    stack = CellStack.new
+    stack.push :FIRST
+    stack.push :SECOND
+    stack.pop.should be(:SECOND)
+    stack.pop.should be(:FIRST)
+  end
 end
