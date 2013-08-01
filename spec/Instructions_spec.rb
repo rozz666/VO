@@ -113,50 +113,50 @@ module Instructions
     end
     context :Mul do
       it "should multiply two values from the stack and put the result on the stack" do
-        add = Mul.new @stack
+        mul = Mul.new @stack
         @stack.should_receive(:pop) { 3 }
         @stack.should_receive(:pop) { 5 }
         @stack.should_receive(:push).with(15)
-        add.run.should eq(0)
+        mul.run.should eq(0)
       end
     end
     context :Neg do
       it "should negate the value on top of the stack" do
-        add = Neg.new @stack
+        neg = Neg.new @stack
         @stack.should_receive(:pop) { 3 }
         @stack.should_receive(:push).with(-3)
-        add.run.should eq(0)
+        neg.run.should eq(0)
       end
     end
     context :Inv do
       it "should invert the value on top of the stack" do
-        add = Inv.new @stack
+        inv = Inv.new @stack
         @stack.should_receive(:pop) { 3.0 }
         @stack.should_receive(:push) do |val|
           val.should be_within(0.00001).of(0.33333)
         end
-        add.run.should eq(0)
+        inv.run.should eq(0)
       end
     end
     context :Movf do
       it "should move the cell forward" do
-        add = Movf.new @cell
+        movf = Movf.new @cell
         @cell.should_receive(:moveForward)
-        add.run.should eq(0)
+        movf.run.should eq(0)
       end
     end
     context :Rotl do
       it "should turn the cell to the left" do
-        add = Rotl.new @cell
+        rotl = Rotl.new @cell
         @cell.should_receive(:turnLeft)
-        add.run.should eq(0)
+        rotl.run.should eq(0)
       end
     end
     context :Rotr do
       it "should turn the cell to the left" do
-        add = Rotr.new @cell
+        rotr = Rotr.new @cell
         @cell.should_receive(:turnRight)
-        add.run.should eq(0)
+        rotr.run.should eq(0)
       end
     end
   end
