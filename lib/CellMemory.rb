@@ -6,6 +6,6 @@ class CellMemory
     @values[addr] = val
   end
   def loadFrom addr
-    @values[addr]
+    @values[addr] || 0
   end
 end
