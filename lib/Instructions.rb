@@ -129,4 +129,14 @@ module Instructions
       0
     end
   end
+
+  class Inv
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      @stack.push 1.0 / @stack.pop
+      0
+    end
+  end
 end

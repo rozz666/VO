@@ -113,10 +113,20 @@ module Instructions
       end
     end
     context :Neg do
-      it "should begate the value on top of the stack" do
+      it "should negate the value on top of the stack" do
         add = Neg.new @stack
         @stack.should_receive(:pop) { 3 }
         @stack.should_receive(:push).with(-3)
+        add.run.should eq(0)
+      end
+    end
+    context :Inv do
+      it "should invert the value on top of the stack" do
+        add = Inv.new @stack
+        @stack.should_receive(:pop) { 3.0 }
+        @stack.should_receive(:push) do |val|
+          val.should be_within(0.00001).of(0.33333)
+        end
         add.run.should eq(0)
       end
     end
