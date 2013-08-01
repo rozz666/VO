@@ -89,4 +89,14 @@ module Instructions
       0
     end
   end
+  
+  class Pop
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      @stack.pop
+      0
+    end
+  end
 end

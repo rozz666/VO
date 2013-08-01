@@ -87,5 +87,12 @@ module Instructions
         push.run.should eq(0)
       end
     end
+    context :Pop do
+      it "should pop a value" do
+        pop = Pop.new @stack
+        @stack.should_receive(:pop)
+        pop.run.should eq(0)
+      end
+    end
   end
 end
