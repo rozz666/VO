@@ -192,6 +192,12 @@ module Instructions
         @stack.should_receive(:push).with(0)
         @lt.run.should eq(0)
       end
+      it "should push 1 if top value is less than the value below" do
+        @stack.should_receive(:pop) { 5 }
+        @stack.should_receive(:pop) { 6 }
+        @stack.should_receive(:push).with(1)
+        @lt.run.should eq(0)
+      end
     end
   end
 end
