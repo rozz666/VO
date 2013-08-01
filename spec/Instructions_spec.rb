@@ -104,11 +104,19 @@ module Instructions
       end
     end
     context :Mul do
-      it "should multiply two value from the stack and put the result on the stack" do
+      it "should multiply two values from the stack and put the result on the stack" do
         add = Mul.new @stack
         @stack.should_receive(:pop) { 3 }
         @stack.should_receive(:pop) { 5 }
         @stack.should_receive(:push).with(15)
+        add.run.should eq(0)
+      end
+    end
+    context :Neg do
+      it "should begate the value on top of the stack" do
+        add = Neg.new @stack
+        @stack.should_receive(:pop) { 3 }
+        @stack.should_receive(:push).with(-3)
         add.run.should eq(0)
       end
     end

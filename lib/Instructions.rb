@@ -119,4 +119,14 @@ module Instructions
       0
     end
   end
+
+  class Neg
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      @stack.push -@stack.pop
+      0
+    end
+  end
 end
