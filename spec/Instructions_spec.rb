@@ -94,5 +94,14 @@ module Instructions
         pop.run.should eq(0)
       end
     end
+    context :Add do
+      it "should add two value from the stack and put the result on the stack" do
+        add = Add.new @stack
+        @stack.should_receive(:pop) { 7 }
+        @stack.should_receive(:pop) { 9 }
+        @stack.should_receive(:push).with(16)
+        add.run.should eq(0)
+      end
+    end
   end
 end

@@ -99,4 +99,14 @@ module Instructions
       0
     end
   end
+
+  class Add
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      @stack.push @stack.pop + @stack.pop
+      0
+    end
+  end
 end
