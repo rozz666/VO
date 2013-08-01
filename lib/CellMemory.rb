@@ -1,5 +1,5 @@
 class CellMemory
-  def initialize
+  def initialize size
     @values = []
   end
   def storeValueAt val, addr
