@@ -186,6 +186,12 @@ module Instructions
         @stack.should_receive(:push).with(0)
         @lt.run.should eq(0)
       end
+      it "should push 0 if top value is grater than the value below" do
+        @stack.should_receive(:pop) { 9 }
+        @stack.should_receive(:pop) { 7 }
+        @stack.should_receive(:push).with(0)
+        @lt.run.should eq(0)
+      end
     end
   end
 end
