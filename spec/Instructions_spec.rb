@@ -94,6 +94,14 @@ module Instructions
         pop.run.should eq(0)
       end
     end
+    context :Dup do
+      it "should duplicate a value" do
+        dup = Dup.new @stack
+        @stack.should_receive(:pop).and_return(:VALUE)
+        @stack.should_receive(:push).with(:VALUE).twice
+        dup.run.should eq(0)
+      end
+    end
     context :Add do
       it "should add two value from the stack and put the result on the stack" do
         add = Add.new @stack

@@ -100,6 +100,16 @@ module Instructions
     end
   end
 
+  class Dup
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      val = @stack.pop
+      2.times { @stack.push val }
+      0
+    end
+  end
   class Add
     def initialize stack
       @stack = stack
