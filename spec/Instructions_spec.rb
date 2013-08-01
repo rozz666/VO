@@ -137,5 +137,12 @@ module Instructions
         add.run.should eq(0)
       end
     end
+    context :Rotl do
+      it "should turn the cell to the left" do
+        add = Rotl.new @cell
+        @cell.should_receive(:turnLeft)
+        add.run.should eq(0)
+      end
+    end
   end
 end

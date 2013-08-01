@@ -149,4 +149,14 @@ module Instructions
       0
     end
   end
+  
+  class Rotl
+    def initialize cell
+      @cell = cell
+    end
+    def run
+      @cell.turnLeft
+      0
+    end
+  end
 end
