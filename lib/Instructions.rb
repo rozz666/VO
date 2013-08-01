@@ -79,4 +79,14 @@ module Instructions
       0
     end
   end
+  
+  class Push
+    def initialize stack, value
+      @stack, @value = stack, value
+    end
+    def run
+      @stack.push @value
+      0
+    end
+  end
 end

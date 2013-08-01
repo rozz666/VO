@@ -80,5 +80,12 @@ module Instructions
         swap.run.should eq(0)
       end
     end
+    context :Push do
+      it "should push a constant" do
+        push = Push.new @stack, :VALUE
+        @stack.should_receive(:push).with(:VALUE)
+        push.run.should eq(0)
+      end
+    end
   end
 end
