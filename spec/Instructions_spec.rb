@@ -160,21 +160,31 @@ module Instructions
       end
     end
     context :Eq do
+      before(:each) {
+        @eq = Eq.new @stack
+      }
       it "should push 1 if two values are equal" do
-        eq = Eq.new @stack
-        left  = double("left")
         @stack.should_receive(:pop) { 7 }
         @stack.should_receive(:pop) { 7 }
         @stack.should_receive(:push).with(1)
-        eq.run.should eq(0)
+        @eq.run.should eq(0)
       end
       it "should push 0 if two values are not equal" do
-        eq = Eq.new @stack
-        left  = double("left")
         @stack.should_receive(:pop) { 7 }
         @stack.should_receive(:pop) { 8 }
         @stack.should_receive(:push).with(0)
-        eq.run.should eq(0)
+        @eq.run.should eq(0)
+      end
+    end
+    context :Eq do
+      before(:each) {
+        @lt = Lt.new @stack
+      }
+      it "should push 0 if two values are equal" do
+        @stack.should_receive(:pop) { 7 }
+        @stack.should_receive(:pop) { 7 }
+        @stack.should_receive(:push).with(0)
+        @lt.run.should eq(0)
       end
     end
   end

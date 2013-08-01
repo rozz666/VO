@@ -189,4 +189,15 @@ module Instructions
       0
     end
   end
+  
+  class Lt
+    def initialize stack
+      @stack = stack
+    end
+    def run
+      2.times { @stack.pop }
+      @stack.push 0
+      0
+    end
+  end
 end
