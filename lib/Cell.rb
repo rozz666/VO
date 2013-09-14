@@ -3,6 +3,7 @@ class Cell
   attr_accessor :position
   def initialize initialEnergy, geneticCode, cloner
     @energy, @geneticCode, @cloner = initialEnergy, geneticCode, cloner
+    @direction = Vector[0, 1]
   end
   def dead?
     @energy.zero?
@@ -17,6 +18,9 @@ class Cell
     @cloner.clone @geneticCode
   end
   def moveForward
-    @position += Vector[0, 1]
+    @position += @direction
+  end
+  def rotateLeft
+    @direction = Vector[-@direction[1], @direction[0]]
   end
 end

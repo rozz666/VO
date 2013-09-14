@@ -52,5 +52,16 @@ describe :Cell do
       @cell.moveForward
       @cell.position.should eq Vector[3, 6]
     end
+    context "#turnLeft" do
+      it "should rotate the direction counterclockwise" do
+        @cell.position = Vector[1, 2]
+        @cell.rotateLeft
+        @cell.moveForward
+        @cell.position.should eq Vector[0, 2]
+        @cell.rotateLeft
+        @cell.moveForward
+        @cell.position.should eq Vector[0, 1]
+      end
+    end
   end
 end
