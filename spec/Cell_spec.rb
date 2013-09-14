@@ -3,7 +3,7 @@ require 'Cell'
 describe :Cell do
   context "with no energy" do
     before :each do
-      @cell = Cell.new 0
+      @cell = Cell.new 0, nil, nil
     end
     it "should be dead" do
       @cell.should be_dead
@@ -11,7 +11,8 @@ describe :Cell do
   end
   context "with energy" do
     before :each do
-      @cell = Cell.new 3
+      @cloner = double("cloner")
+      @cell = Cell.new 3, :GC, @cloner
     end
     it "should be alive" do
       @cell.should_not be_dead
@@ -36,6 +37,12 @@ describe :Cell do
     it "should have a mutable position" do
       @cell.position = :POS
       @cell.position.should eq :POS
+    end
+    context "#createCopy" do
+      it "should clone the cell" do
+        @cloner.should_receive(:clone).with(:GC) { :NEW_CELL }
+        @cell.createCopy.should be :NEW_CELL
+      end
     end
   end
 end

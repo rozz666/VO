@@ -1,8 +1,8 @@
 class Cell
   attr_reader :energy
   attr_accessor :position
-  def initialize initialEnergy
-    @energy = initialEnergy
+  def initialize initialEnergy, geneticCode, cloner
+    @energy, @geneticCode, @cloner = initialEnergy, geneticCode, cloner
   end
   def dead?
     @energy.zero?
@@ -12,5 +12,8 @@ class Cell
   end
   def addEnergy e
     @energy += e
+  end
+  def createCopy
+    @cloner.clone @geneticCode
   end
 end
