@@ -16,5 +16,11 @@ describe :Cell do
     it "should be alive" do
       @cell.should_not be_dead
     end
+    context "#step" do
+      it "should decrease its energy" do
+        @cell.step
+        @cell.energy.should eq 2
+      end
+    end
   end
 end
