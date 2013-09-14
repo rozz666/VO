@@ -33,5 +33,9 @@ describe :Cell do
         @cell.energy.should eq 14
       end
     end
+    it "should have a mutable position" do
+      @cell.position = :POS
+      @cell.position.should eq :POS
+    end
   end
 end

@@ -1,5 +1,6 @@
 class Cell
   attr_reader :energy
+  attr_accessor :position
   def initialize initialEnergy
     @energy = initialEnergy
   end
