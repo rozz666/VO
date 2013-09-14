@@ -2,6 +2,6 @@ require 'World'
 
 class World
   def self.build
-      World.new
+      World.new []
   end
 end
