@@ -21,6 +21,10 @@ describe :Cell do
         @cell.step
         @cell.energy.should eq 2
       end
+      it "should kill the cell when its energy is drained" do
+        3.times { @cell.step }
+        @cell.should be_dead
+      end
     end
   end
 end
