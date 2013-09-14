@@ -23,4 +23,7 @@ class Cell
   def rotateLeft
     @direction = Vector[-@direction[1], @direction[0]]
   end
+  def rotateRight
+    @direction = Vector[@direction[1], -@direction[0]]
+  end
 end
