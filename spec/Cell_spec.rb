@@ -13,17 +13,21 @@ describe :Cell do
   context "with energy" do
     before :each do
       @cloner = double("cloner")
+      @program = double("program")
       @cell = Cell.new 3, :GC, @cloner
+      @cell.program = @program
     end
     it "should be alive" do
       @cell.should_not be_dead
     end
     context "#step" do
-      it "should decrease its energy" do
+      it "should decrease its energy and do a step for its program" do
+        @program.should_receive(:step)
         @cell.step
         @cell.energy.should eq 2
       end
       it "should kill the cell when its energy is drained" do
+        @program.stub(:step)
         3.times { @cell.step }
         @cell.should be_dead
       end
