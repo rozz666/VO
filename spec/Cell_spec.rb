@@ -26,5 +26,12 @@ describe :Cell do
         @cell.should be_dead
       end
     end
+    context "#addEnergy" do
+      it "should increase energy by the given amount" do
+        @cell.addEnergy 7
+        @cell.addEnergy 4
+        @cell.energy.should eq 14
+      end
+    end
   end
 end

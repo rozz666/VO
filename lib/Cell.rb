@@ -9,4 +9,7 @@ class Cell
   def step
     @energy -= 1
   end
+  def addEnergy e
+    @energy += e
+  end
 end
