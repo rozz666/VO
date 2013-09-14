@@ -5,6 +5,7 @@ class World
   def run numIterations
   end
   def step
+    @cells.delete_if &:dead?
     @cells.each &:step
   end
 end
