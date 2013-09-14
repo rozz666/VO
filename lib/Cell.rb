@@ -1,7 +1,8 @@
 class Cell
   def initialize initialEnergy
+    @energy = initialEnergy
   end
   def dead?
-    true
+    @energy.zero?
   end
 end
