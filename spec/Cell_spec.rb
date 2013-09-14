@@ -1,4 +1,5 @@
 require 'Cell'
+require 'matrix'
 
 describe :Cell do
   context "with no energy" do
@@ -43,6 +44,13 @@ describe :Cell do
         @cloner.should_receive(:clone).with(:GC) { :NEW_CELL }
         @cell.createCopy.should be :NEW_CELL
       end
+    end
+    it "should have default direction up" do
+      @cell.position = Vector[3, 4]
+      @cell.moveForward
+      @cell.position.should eq Vector[3, 5]
+      @cell.moveForward
+      @cell.position.should eq Vector[3, 6]
     end
   end
 end

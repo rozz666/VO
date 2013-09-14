@@ -16,4 +16,7 @@ class Cell
   def createCopy
     @cloner.clone @geneticCode
   end
+  def moveForward
+    @position += Vector[0, 1]
+  end
 end
