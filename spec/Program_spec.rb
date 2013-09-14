@@ -23,4 +23,16 @@ describe :Program do
     @instructions[1 + 3].should_receive(:run) { 0 }
     @program.step
   end
+  it "should restart when instruction index gets negative" do
+    @instructions[0].should_receive(:run) { 4 }
+    @instructions[5].should_receive(:run) { -2 }
+    @instructions[4].should_receive(:run) { -6 }
+    3.times { @program.step }
+    @instructions[0].should_receive(:run) { 0 }
+    @program.step
+  end
+  it "should restart when instruction index gets past the program size" do
+    @instructions[0].should_receive(:run).and_return(@instructions.count - 1, @instructions.count, 0)
+    3.times { @program.step }
+  end
 end

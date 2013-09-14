@@ -6,5 +6,6 @@ class Program
   def step
     delta = @instructions[@index].run
     @index += 1 + delta
+    @index = 0 if @index < 0 || @index >= @instructions.size
   end
 end
