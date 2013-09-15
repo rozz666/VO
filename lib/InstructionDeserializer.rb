@@ -1,9 +1,8 @@
-class CellCloner
-  def initialize deserializer, instructionFactory
-    @deserializer, @instructionFactory = deserializer, instructionFactory
+class InstructionDeserializer
+  def initialize instructionFactory
+    @instructionFactory = instructionFactory
   end
-  def clone geneticCode
-    stream = @deserializer.getStream(geneticCode)
+  def deserialize stream
     instructions = []
     while i = deserializeInstruction(stream)
       instructions << i
