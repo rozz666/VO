@@ -20,4 +20,8 @@ describe :CellCloner do
     @instructionFactory.should_receive(:create).and_return(:i1, nil)
     @cloner.clone(:GC).should eq [ :i1 ]
   end
+  it "should return no instructions for an empty stream" do
+    @stream.stub(:get){ nil }
+    @cloner.clone(:GC).should be_empty
+  end
 end
