@@ -24,4 +24,9 @@ describe :CellCloner do
     @stream.stub(:get){ nil }
     @cloner.clone(:GC).should be_empty
   end
+  it "should return no instructions if creating the first instruction fails" do
+    @stream.stub(:get).and_return(:A, nil)
+    @instructionFactory.should_receive(:create) { nil }
+    @cloner.clone(:GC).should be_empty
+  end
 end
