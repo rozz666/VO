@@ -5,9 +5,15 @@ class CellCloner
   def clone geneticCode
     stream = @deserializer.getStream(geneticCode)
     instructions = []
-    while s = stream.get(:SYMBOL)
-      instructions << @instructionFactory.create(s, stream)
+    while i = deserializeInstruction(stream)
+      instructions << i
     end
     instructions
+  end
+  private
+  def deserializeInstruction stream
+    s = stream.get(:SYMBOL)
+    return nil unless s
+    @instructionFactory.create(s, stream)
   end
 end
